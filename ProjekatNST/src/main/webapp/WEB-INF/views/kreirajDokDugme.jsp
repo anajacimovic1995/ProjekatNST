@@ -5,7 +5,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Home page</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -375,55 +374,34 @@ text-align: justify;
 	<link rel="stylesheet" href="css/footer-distributed-with-contact-form.css">
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 	<link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
-    <title>Prikaz dokumenata</title>
-
+<title>Kreiraj novi dokument</title>
 </head>
 <body>
-<div class="header">
-  <h1>Management Document System</h1>
+	<div class="header">
+	  <h1>Management Document System</h1>
+	
+	</div>
+	
+	<div class="navbar">
+	  <a href="/ProjekatNST/" class="active">Home</a>
+	  <a href="/ProjekatNST/kreirajDokDugme" class="active">Kreiraj dokument</a>
+	  <a href="/ProjekatNST/kreirajTempDugme" class="active">Kreiraj templejt</a>
+	  <a href="/ProjekatNST/" class="right">Izloguj se sa naloga</a>
+	</div>
 
-</div>
+	 <p>Kreiraj novi dokument</p>
+	 <form action="dodajDokument" method="post">
+	  Unesi ime novog dokumenta: <input type="text" name="dokument"><br>
+	  	   Unesi ime templejt dokumenta: <br>
+	  <select id = "temp" name = "templejt">
+	  <c:forEach var = "temp" items = "${templejtList}">
+	  		   <option value = "${temp.getNazivTemplejta()}">${temp.getNazivTemplejta()}</option>
 
-<div class="navbar">
-  <a href="/ProjekatNST/" class="active">Home</a>
-  <a href="/ProjekatNST/kreirajDokDugme" class="active">Kreiraj dokument</a>
-  <a href="/ProjekatNST/kreirajTempDugme" class="active">Kreiraj templejt</a>
-  <a href="/ProjekatNST/" class="right">Izloguj se sa naloga</a>
-</div>
-
-	<br>
-
-	<h3>Prikaz svih dokumenata</h3>
-
-	<table border="1">
-		<thead>
-			<tr>
-				<th>Naziv</th>
-				<th>Templejt</th>
-				<th>Kompanija</th>
-				<th>Edit</th>
-				<th>Delete</th>
-			</tr>
-		</thead>
-
-		<tbody>
-			<c:forEach var="dokument" items="${dokumentList}">
-				<tr>
-					<td>${dokument.getNazivDokumenta()}</td>
-					<td>${dokument.getTemplejt().getNazivTemplejta()}</td>
-					<td>${dokument.getKompanija().getImeKompanije()}</td>
-					<td><a
-						href="${pageContext.request.contextPath}/azurirajDokument/${dokument.getDokumentID()}">Edit</a></td>
-					<td><a
-						href="${pageContext.request.contextPath}/izbrisiDokument/${dokument.getDokumentID()}">Delete</a></td>
-				</tr>
-			</c:forEach>
-		</tbody>
-
-
-	</table>
-		<br>
-	<footer class="footer-distributed">
+	  </c:forEach>
+	  	 </select><br>
+	  <input type="submit" value="Sacuvaj dokument i dodaj vrednosti">
+	 </form>
+	 	<footer class="footer-distributed">
 
 		<div class="footer-left">
 
@@ -451,7 +429,5 @@ text-align: justify;
 				</form>
 			</div>
 </footer>
-
-	
 </body>
 </html>

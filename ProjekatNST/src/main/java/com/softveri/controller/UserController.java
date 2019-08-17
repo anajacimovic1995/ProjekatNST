@@ -68,7 +68,7 @@ public class UserController {
 	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
 	public ModelAndView home(HttpServletResponse response) throws IOException {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("home");
+		mv.setViewName("login");
 		return mv;
 	}
 	
@@ -76,6 +76,32 @@ public class UserController {
 	public ModelAndView login(HttpServletResponse response) throws IOException {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("login");
+		return mv;
+	}
+	
+	@RequestMapping(value = "/kreirajDokDugme", method = RequestMethod.GET)
+	public ModelAndView kreirajDokDugme(HttpServletResponse response) throws IOException {
+		ModelAndView mv = new ModelAndView();
+		List<Dokument> dokumentList = dokumentService.getAllDocuments();
+		List<Templejt> templejtList = templejtService.getAllTemplejts();
+		System.out.println(dokumentList.get(0).getNazivDokumenta());
+		System.out.println(templejtList.get(0).getNazivTemplejta());
+		mv.addObject("dokumentList", dokumentList);	
+		mv.addObject("templejtList", templejtList);
+		mv.setViewName("kreirajDokDugme");
+		return mv;
+	}
+	
+	@RequestMapping(value = "/kreirajTempDugme", method = RequestMethod.GET)
+	public ModelAndView kreirajTempDugme(HttpServletResponse response) throws IOException {
+		ModelAndView mv = new ModelAndView();
+		List<Dokument> dokumentList = dokumentService.getAllDocuments();
+		List<Templejt> templejtList = templejtService.getAllTemplejts();
+		System.out.println(dokumentList.get(0).getNazivDokumenta());
+		System.out.println(templejtList.get(0).getNazivTemplejta());
+		mv.addObject("dokumentList", dokumentList);	
+		mv.addObject("templejtList", templejtList);
+		mv.setViewName("kreirajTempDugme");
 		return mv;
 	}
 	

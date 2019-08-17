@@ -1,11 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Home page</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -375,55 +372,22 @@ text-align: justify;
 	<link rel="stylesheet" href="css/footer-distributed-with-contact-form.css">
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 	<link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
-    <title>Prikaz dokumenata</title>
 
 </head>
 <body>
-<div class="header">
-  <h1>Management Document System</h1>
-
-</div>
-
-<div class="navbar">
-  <a href="/ProjekatNST/" class="active">Home</a>
-  <a href="/ProjekatNST/kreirajDokDugme" class="active">Kreiraj dokument</a>
-  <a href="/ProjekatNST/kreirajTempDugme" class="active">Kreiraj templejt</a>
-  <a href="/ProjekatNST/" class="right">Izloguj se sa naloga</a>
-</div>
-
+	<div class="header">
+	  <h1>Management Document System</h1>
+	
+	</div>
+	
+	<div class="navbar">
+	  <a href="/ProjekatNST/" class="active">Home</a>
+	  <a href="/ProjekatNST/kreirajDokDugme" class="active">Kreiraj dokument</a>
+	  <a href="/ProjekatNST/kreirajTempDugme" class="active">Kreiraj templejt</a>
+	  <a href="/ProjekatNST/" class="right">Izloguj se sa naloga</a>
+	</div>
 	<br>
-
-	<h3>Prikaz svih dokumenata</h3>
-
-	<table border="1">
-		<thead>
-			<tr>
-				<th>Naziv</th>
-				<th>Templejt</th>
-				<th>Kompanija</th>
-				<th>Edit</th>
-				<th>Delete</th>
-			</tr>
-		</thead>
-
-		<tbody>
-			<c:forEach var="dokument" items="${dokumentList}">
-				<tr>
-					<td>${dokument.getNazivDokumenta()}</td>
-					<td>${dokument.getTemplejt().getNazivTemplejta()}</td>
-					<td>${dokument.getKompanija().getImeKompanije()}</td>
-					<td><a
-						href="${pageContext.request.contextPath}/azurirajDokument/${dokument.getDokumentID()}">Edit</a></td>
-					<td><a
-						href="${pageContext.request.contextPath}/izbrisiDokument/${dokument.getDokumentID()}">Delete</a></td>
-				</tr>
-			</c:forEach>
-		</tbody>
-
-
-	</table>
-		<br>
-	<footer class="footer-distributed">
+		<footer class="footer-distributed">
 
 		<div class="footer-left">
 
@@ -442,7 +406,7 @@ text-align: justify;
 
 		<div class="footer-right">
 
-				<p>Kontakt forma</p>
+				<p>Kontakt</p>
 
 				<form action="/ProjekatNST/" method="post">
 					<input type="text" name="email" placeholder="Email" />
@@ -451,7 +415,5 @@ text-align: justify;
 				</form>
 			</div>
 </footer>
-
-	
 </body>
 </html>
