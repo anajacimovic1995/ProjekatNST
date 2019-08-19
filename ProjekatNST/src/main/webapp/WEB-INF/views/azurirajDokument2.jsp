@@ -367,7 +367,21 @@ text-align: justify;
 		  font-family: Arial, Helvetica, sans-serif;
 		  margin: 0;
 		}
-
+.submitclass {
+  background-color: #f29d52;
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  margin: 4px 2px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
 </style>
 
 	<meta charset="utf-8">
@@ -378,13 +392,15 @@ text-align: justify;
 	<link rel="stylesheet" href="css/footer-distributed-with-contact-form.css">
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 	<link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
-<title>Insert title here</title>
+<title>Azuriranje dokumenta</title>
 </head>
 <body>
 <div class="header">
-  <h1>Azuriraj dokument</h1>
+  <h1>Azuriranje dokumenta</h1>
 
 </div>
+<br>
+<br>
         <form:form method="POST" action="azurirajDokument" modelAttribute="dokument">
         
         	<form:hidden path="DokumentID" /> 
@@ -393,13 +409,14 @@ text-align: justify;
                     <td><form:label path="NazivDokumenta">Naziv</form:label></td>
                     <td><form:input path="NazivDokumenta"/></td>
                 </tr>
-                <tr>
-                    <td><input type="submit" value="Submit"/></td>
-                </tr>
+                
             </table>
-            
+            <td><input class="submitclass" type="submit" value="Submit"/></td>
         </form:form>
+        <br>
+        <br>
 			  	  <table border="1">
+			  	  
 		<thead>
 			<tr>
 				<th>Naziv atributa</th>
@@ -430,8 +447,9 @@ text-align: justify;
 
 
 	</table>
-		<form action="documents" method="post">
-		<p><input type="submit" value="Vrati se na listu dokumenta"/></p>
+	<br>
+		<form action="documents1" method="post">
+		<p><input class="submitclass" type="submit" value="Vrati se na listu dokumenta"/></p>
 	</form>
 		<footer class="footer-distributed">
 

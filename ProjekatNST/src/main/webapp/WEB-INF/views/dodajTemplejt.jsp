@@ -16,7 +16,21 @@ body {
   margin: 0;
 }
 
-
+.submitclass {
+  background-color: #f29d52;
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  margin: 4px 2px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
 .header h1 {
   font-size: 40px;
 }
@@ -395,13 +409,13 @@ text-align: justify;
 					</select>  <br>
 		  Obavezan(Ukoliko jeste upisati 0, ukoliko nije upisati 1): <input type="text" name="required"><br>
 		  <br>
-		  <input type="submit" value="Sacuvaj atribut">
+		  <input class = "submitclass"  type="submit" value="Sacuvaj atribut">
 
 	  </form>
 	  <br>
 	  <form action="documents1" method="post" >
 
-		  <input type="submit" value="Vrati se na listu dokumenata/ Gotovo kreiranje">
+		  <input class = "submitclass" type="submit" value="Vrati se na listu dokumenata/ Gotovo kreiranje">
 
 	  </form>
 	  <br>

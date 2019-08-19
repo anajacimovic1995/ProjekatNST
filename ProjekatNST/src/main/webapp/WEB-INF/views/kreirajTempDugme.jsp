@@ -12,7 +12,21 @@
   box-sizing: border-box;
 }
 
-
+.submitclass {
+  background-color: #f29d52;
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  margin: 4px 2px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
 body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
@@ -375,11 +389,11 @@ text-align: justify;
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 	<link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
 <meta charset="ISO-8859-1">
-<title>Izaberi ili kreiraj novi templejt</title>
+<title>Kreiranje novog templejta</title>
 </head>
 <body>
 	<div class="header">
-	  <h1>Management Document System</h1>
+	  <h1>Odabir/kreiranje novog templejta</h1>
 	
 	</div>
 	
@@ -390,9 +404,9 @@ text-align: justify;
 	  <a href="/ProjekatNST/" class="right">Izloguj se sa naloga</a>
 	</div>
 
-		<p>Izaberi ili kreiraj novi templejt</p>
+	<br>
 	<form action="dodajTemplejt" method="post">
-      Izaberi templejt: <br>
+      Izaberi templejt: 
       <select id = "temp" name = "name">
       					<option value = "Novi Templejt">Novi Templejt</option>
 	  <c:forEach var = "temp" items = "${templejtList}">
@@ -402,8 +416,10 @@ text-align: justify;
 
 	  </c:forEach> 
 	  </select> <br>
+	  <br>
 	  Unesi ime novog templejta: <input type="text" name="noviTemplejt"><br>
-	  <input type="submit" value="Sacuvaj templejt i kreiraj atribute">
+	  <br>
+	  <input class="submitclass" type="submit" value="Sacuvaj templejt i kreiraj atribute">
 	 </form>
 
 	<br>

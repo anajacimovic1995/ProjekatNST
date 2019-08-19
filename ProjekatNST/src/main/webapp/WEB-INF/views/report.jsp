@@ -16,7 +16,21 @@ body {
   margin: 0;
 }
 
-
+.submitclass {
+  background-color: #f29d52;
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  margin: 4px 2px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
 .header h1 {
   font-size: 40px;
 }
@@ -395,7 +409,7 @@ text-align: justify;
 				<br>
 		  	</c:forEach>   		
 	
-	  	<p><input type="submit" value="Vrati se na listu dokumenta"/></p>
+	  	<p><input class = "submitclass" type="submit" value="Vrati se na listu dokumenta"/></p>
 	</form>
 		<footer class="footer-distributed">
 

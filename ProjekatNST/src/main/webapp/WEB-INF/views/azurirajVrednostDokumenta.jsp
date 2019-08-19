@@ -368,7 +368,21 @@ text-align: justify;
 		  font-family: Arial, Helvetica, sans-serif;
 		  margin: 0;
 		}
-
+.submitclass {
+  background-color: #f29d52;
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  margin: 4px 2px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
 </style>
 
 	<meta charset="utf-8">
@@ -386,6 +400,8 @@ text-align: justify;
   <h1>Azuriranje vrednosti dokumenta</h1>
 
 </div>
+<br>
+<br>
 	  <form:form method="POST" action="azurirajVrednostDokumenta" modelAttribute="vrednost">
        
         	<form:hidden path="VrednostID" /> 
@@ -414,15 +430,15 @@ text-align: justify;
 		                </tr></c:otherwise>   
 					</c:choose> 
 
-                <tr>
-                    <td><input type="submit" value="Submit"/></td>
-                </tr>
+                
             </table>
-            
+            <br>
+            <td><input class="submitclass" type="submit" value="Submit"/></td>
         </form:form>
-
+		<br>
+		<br>
     <form action="documents1" method="post"> 
-  	 <input type="submit" value="Vrati se na prikaz dokumenata i odustani od cuvanja vrednosti dokumenta">
+  	 <input class = "submitclass" type="submit" value="Vrati se na prikaz dokumenata i odustani od cuvanja vrednosti dokumenta">
 	</form>
 		<footer class="footer-distributed">
 

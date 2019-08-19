@@ -17,7 +17,21 @@ body {
   margin: 0;
 }
 
-
+.submitclass {
+  background-color: #f29d52;
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  margin: 4px 2px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
 .header h1 {
   font-size: 40px;
 }
@@ -386,10 +400,10 @@ text-align: justify;
 	<form action="sledeci" method="post" align="center"> 
 	 Naziv dokumenta : ${dokument.getNazivDokumenta()} <br>
 	Vrednost atributa ${atribut.getNazivAtributa()} (${atribut.getTip()}) je :<input type="text" name="vrednost"><br>
-  	<input type="submit" value="sledeci">
+  	<input class= "submitclass" type="submit" value="sledeci">
 	</form>
     <form action="documents1" method="post" align="center"> 
-  	 <input type="submit" value="Vrati se na prikaz dokumenata i odustani od cuvanja vrednosti dokumenta">
+  	 <input type="submit" class= "submitclass" value="Vrati se na prikaz dokumenata i odustani od cuvanja vrednosti dokumenta">
 	</form>
 	<br>
 	<br>
