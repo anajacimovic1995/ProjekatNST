@@ -404,8 +404,9 @@ text-align: justify;
 	  <a href="/ProjekatNST/" class="right">Izloguj se sa naloga</a>
 	</div>
 	<br>
-	<p> Ukoliko zelite da izmenite naziv ili atribute postojeceg templejta, izaberite iz padajuceg menija zeljene templejt i 
-	kliknite na dugme Sacuvaj templejt i kreiraj atribute. Ukoliko zelite da kreirate novi templejt u polje Unesi naziv novog templejta
+	<p> Ukoliko zelite da izmenite naziv ili obrisete atribute postojeceg templejta, izaberite iz padajuceg menija zeljeni templejt i 
+	kliknite na dugme Sacuvaj templejt i kreiraj atribute. Azuriranje vrednosti dokumenata vrsi se na pocetnoj strani pri odabiru
+	opcije EDIT za odredjeni dokument, moguca je izmena naziva i vrednosti atributa konkretnog dokumenta. Ukoliko zelite da kreirate novi templejt u polje Unesi naziv novog templejta
 	unesite naziv, a zatim kliknite na pomenuto dugme ispod teksta.</p>
 	<br>
 	<form action="dodajTemplejt" method="post">
