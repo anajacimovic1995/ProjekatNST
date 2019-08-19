@@ -170,6 +170,7 @@ public class UserController {
 		mv.setViewName("documents");
 		return mv;
 	}
+
 	@RequestMapping(value = "/izbrisiDokument/{id}", method = RequestMethod.GET)
 	public ModelAndView izbrisiDokument(@PathVariable int id, HttpServletResponse response) throws IOException {
 		List<VrednostPoljaDokumenta> vrednosti = vrednostService.getAllVrednosti();

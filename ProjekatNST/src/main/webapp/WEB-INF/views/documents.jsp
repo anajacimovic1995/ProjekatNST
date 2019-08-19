@@ -388,7 +388,7 @@ text-align: justify;
 </div>
 
 <div class="navbar">
-  <a href="/ProjekatNST/" class="active">Home</a>
+  <a href="/ProjekatNST/documents" class="active">Home</a>
   <a href="/ProjekatNST/kreirajDokDugme" class="active">Kreiraj dokument</a>
   <a href="/ProjekatNST/kreirajTempDugme" class="active">Kreiraj templejt</a>
   <a href="/ProjekatNST/" class="right">Izloguj se sa naloga</a>
