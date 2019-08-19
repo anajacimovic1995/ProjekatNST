@@ -403,7 +403,10 @@ text-align: justify;
 	  <a href="/ProjekatNST/kreirajTempDugme" class="active">Kreiraj templejt</a>
 	  <a href="/ProjekatNST/" class="right">Izloguj se sa naloga</a>
 	</div>
-
+	<br>
+	<p> Ukoliko zelite da izmenite naziv ili atribute postojeceg templejta, izaberite iz padajuceg menija zeljene templejt i 
+	kliknite na dugme Sacuvaj templejt i kreiraj atribute. Ukoliko zelite da kreirate novi templejt u polje Unesi naziv novog templejta
+	unesite naziv, a zatim kliknite na pomenuto dugme ispod teksta.</p>
 	<br>
 	<form action="dodajTemplejt" method="post">
       Izaberi templejt: 

@@ -397,17 +397,17 @@ text-align: justify;
   <h1>Kreiranje dokumenta</h1>
 
   </div>
-	<form action="sledeci" method="post" align="center"> 
+	<form action="sledeci" method="post" > 
 	 Naziv dokumenta : ${dokument.getNazivDokumenta()} <br>
 	Vrednost atributa ${atribut.getNazivAtributa()} (${atribut.getTip()}) je :<input type="text" name="vrednost"><br>
   	<input class= "submitclass" type="submit" value="sledeci">
 	</form>
-    <form action="documents1" method="post" align="center"> 
+    <form action="documents1" method="post" > 
   	 <input type="submit" class= "submitclass" value="Vrati se na prikaz dokumenata i odustani od cuvanja vrednosti dokumenta">
 	</form>
 	<br>
 	<br>
-		  	  <table border="1" align="center">
+		  	  <table border="1">
 		<thead>
 			<tr>
 				<th>Naziv atributa</th>

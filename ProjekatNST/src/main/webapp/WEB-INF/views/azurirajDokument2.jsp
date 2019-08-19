@@ -411,7 +411,7 @@ text-align: justify;
                 </tr>
                 
             </table>
-            <td><input class="submitclass" type="submit" value="Submit"/></td>
+            <td><input class="submitclass" type="submit" value="Azuriraj naziv dokumenta"/></td>
         </form:form>
         <br>
         <br>
