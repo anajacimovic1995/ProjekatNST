@@ -131,6 +131,7 @@ text-align: justify;
 }
 
 
+
 .header {
   padding: 80px;
   text-align: center;
@@ -340,6 +341,7 @@ text-align: justify;
 
 		.table {
 		  display: table;
+		 
 
 		}
 		
@@ -393,10 +395,10 @@ text-align: justify;
 </div>
 
 	<br>
+<div class="tabeladokumenata"> 
+	<h3 align="center">Prikaz svih dokumenata</h3>
 
-	<h3>Prikaz svih dokumenata</h3>
-
-	<table border="1">
+	<table align="center" border="1" >
 		<thead>
 			<tr>
 				<th>Naziv</th>
@@ -424,6 +426,7 @@ text-align: justify;
 
 	</table>
 		<br>
+		</div>
 	<footer class="footer-distributed">
 
 		<div class="footer-left">
