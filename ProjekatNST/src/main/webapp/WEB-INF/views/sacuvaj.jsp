@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="documents" method="post"> 
+	<form action="documents1" method="post"> 
 		 <p>Uspesno sacuvan dokument!</p>
 		 <p><input type="submit" name="action" value="Vrati se na listu dokumenata" /></p>
 	 </form>

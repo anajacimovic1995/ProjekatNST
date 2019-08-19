@@ -46,15 +46,6 @@ public class Dokument {
 		this.kompanija = kompanija;
 		this.vredosti = vredosti;
 	}
-    public Dokument(String nazivDokumenta, Templejt templejt, Company kompanija,
-			List<VrednostPoljaDokumenta> vredosti) {
-		super();
-		
-		this.NazivDokumenta = nazivDokumenta;
-		this.templejt = templejt;
-		this.kompanija = kompanija;
-		this.vredosti = vredosti;
-	}
 	public Dokument(int DokumentID,String nazivDokumenta, Templejt templejt, Company kompanija, int dokumentID) {
 		
 		this.DokumentID = dokumentID;

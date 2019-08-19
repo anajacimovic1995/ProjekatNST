@@ -123,9 +123,31 @@ public class UserController {
 			return mv;		
 		
 	}
+	@RequestMapping(value = "/documents1", method = RequestMethod.POST)
+	public ModelAndView dokumenta(HttpServletResponse response) throws IOException {		
+		
+		ModelAndView mv = new ModelAndView();
+		List<Dokument> dokumentList = dokumentService.getAllDocuments();
+		List<Templejt> templejtList = templejtService.getAllTemplejts();
+		System.out.println(dokumentList.get(0).getNazivDokumenta());
+		System.out.println(dokumentList.size());
+		mv.addObject("dokumentList", dokumentList);	
+		mv.addObject("templejtList", templejtList);
+		mv.setViewName("documents");
+		return mv;
+	}
 	
 	@RequestMapping(value = "/documents", method = RequestMethod.POST)
-	public ModelAndView dokumenta(HttpServletResponse response) throws IOException {
+	public ModelAndView dokumenta(@RequestParam("name") String name, @RequestParam("pass") String pass,HttpServletResponse response) throws IOException {
+		
+		List<User> userList = userService.getAllUsers();
+		for (User user : userList) {
+			if(user.getUsername().equalsIgnoreCase(name) && user.getPassword().equalsIgnoreCase(pass)) {
+				
+				korisnik = user;
+			}
+		}
+			
 		ModelAndView mv = new ModelAndView();
 		List<Dokument> dokumentList = dokumentService.getAllDocuments();
 		List<Templejt> templejtList = templejtService.getAllTemplejts();

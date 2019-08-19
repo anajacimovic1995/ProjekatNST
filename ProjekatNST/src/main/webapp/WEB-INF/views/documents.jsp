@@ -340,6 +340,7 @@ text-align: justify;
 
 		.table {
 		  display: table;
+
 		}
 		
 		.row {

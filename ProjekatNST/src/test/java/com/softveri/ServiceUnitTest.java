@@ -13,9 +13,13 @@ import org.mockito.Mockito;
 
 import org.mockito.runners.MockitoJUnitRunner;
 
-
+import com.softveri.entity.Company;
+import com.softveri.entity.Dokument;
 import com.softveri.entity.Templejt;
 import com.softveri.entity.TemplejtAtributa;
+import com.softveri.service.CompanyServiceImpl;
+import com.softveri.service.DokumentService;
+import com.softveri.service.DokumentServiceImpl;
 import com.softveri.service.TemplejtAtributaServiceImpl;
 import com.softveri.service.TemplejtServiceImpl;
 
@@ -28,6 +32,12 @@ public class ServiceUnitTest {
 	
 	@Mock
 	TemplejtAtributaServiceImpl serviceAtributa;
+	
+	@Mock
+	DokumentServiceImpl serviceDkument;
+	
+	@Mock
+	CompanyServiceImpl serviceCompany;
 
 	
     @Test
@@ -120,6 +130,76 @@ public class ServiceUnitTest {
 
         System.out.println("Uspesno vracena lista atributa!");
     }   
+    
+    @Test
+    public void getCompanyByIdTest()
+    {
+    	;
+        Mockito.when(serviceCompany.getCompanyById(0)).thenReturn(new Company(0, "Avisto", "Zorana Djindjica", "12345"));         
+        Company c = serviceCompany.getCompanyById(0);
+        
+        assertEquals("Avisto", c.getImeKompanije());
+        
+        System.out.println("Uspesno vracen naziv kompanije!");
+       
+    }
+    
+    @Test
+    public void sacuvajCompanyTest()
+    {
+    	Company c = new Company();    
+    	serviceCompany.saveCompany(c);   
+        Mockito.verify(serviceCompany, Mockito.times(1)).saveCompany(c);
+        System.out.println("Uspesno sacuvana kompanija!");
+    }
+    
+    @Test
+    public void getDokumentByIdTest()
+    {
+    	List<Templejt> templejti = service.getAllTemplejts();
+    	List<Company> kompanije = serviceCompany.getAllCompanies();
+        Mockito.when(serviceDkument.getDokumentById(47)).thenReturn(new Dokument());         
+        Dokument d = serviceDkument.getDokumentById(47); 
+        
+        assertEquals(null, d.getNazivDokumenta());
+        
+        System.out.println("Uspesno vracen ID dokumenta!");
+       
+    }
+    
+    @Test
+    public void sacuvajDokumentTest()
+    {
+    	List<Templejt> templejti = service.getAllTemplejts();
+    	List<Company> kompanije = serviceCompany.getAllCompanies();
+    	Dokument d = new Dokument(); 
+    	serviceDkument.saveDokument(d);         
+        Mockito.verify(serviceDkument, Mockito.times(1)).saveDokument(d);
+        System.out.println("Uspesno sacuvan dokument!");
+    }
+    
+    @Test
+    public void vratiSveDokumenteTest()
+    {
+    	List<Templejt> templejti = service.getAllTemplejts();
+    	List<Company> kompanije = serviceCompany.getAllCompanies();
+    	List<Dokument> dokumenti = new ArrayList<Dokument>();
+    	Dokument d = new Dokument(); 
+    	Dokument d2 = new Dokument(); 
+    	Dokument d3 = new Dokument(); 
+        dokumenti.add(d);
+        dokumenti.add(d2);
+        dokumenti.add(d3);
+         
+        Mockito.when(serviceDkument.getAllDocuments()).thenReturn(dokumenti);
+         
+        //test
+        
+        List<Dokument> dokList = serviceDkument.getAllDocuments();       
+        assertEquals(3, dokList.size());
+        Mockito.verify(serviceDkument, Mockito.times(1)).getAllDocuments();
 
+        System.out.println("Uspesno vracena lista dokumenata!");
+    }
     
 }
