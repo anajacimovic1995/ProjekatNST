@@ -8,6 +8,14 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+ 
+import org.springframework.context.ResourceLoaderAware;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -30,7 +38,7 @@ import com.softveri.service.VrednostPoljaDokumentaService;
 
 
 @Controller
-public class UserController {
+public class UserController implements ResourceLoaderAware{
 	// Constructor based Dependency Injection
 	
 	private UserService userService;
@@ -39,7 +47,12 @@ public class UserController {
 	private TemplejtService templejtService;
 	private TemplejtAtributaService templejtAtributaService;
 	private VrednostPoljaDokumentaService vrednostService;
-
+   
+	private ResourceLoader resourceLoader;
+    
+    public void setResourceLoader(ResourceLoader resourceLoader) {
+        this.resourceLoader = resourceLoader;
+    }
 	public UserController() {
 
 	}
@@ -58,7 +71,8 @@ public class UserController {
 	
 	private Dokument dokumentGlobal = new Dokument();
 	private User korisnik = new User();
-	int idTemplejta =0;
+	int idTemplejta = 0;
+	Templejt noviT = new Templejt();
 	int idAtributa = 100;
 	Dokument dAzuriranje = new Dokument();
 	int atribseAzurira =0;
@@ -91,7 +105,33 @@ public class UserController {
 		mv.setViewName("kreirajDokDugme");
 		return mv;
 	}
+	@RequestMapping(value = "/uploadfile", method = RequestMethod.GET)
+	public ModelAndView uploadfile(HttpServletResponse response) throws IOException {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("uploadfile");
+		return mv;
+	}
+
 	
+	@RequestMapping(value = "/uploadfile1", method = RequestMethod.POST)
+	public ModelAndView uploadfile1(@RequestParam("dokument") String dok, HttpServletResponse response) throws IOException {
+		Resource banner = resourceLoader.getResource(dok);
+		InputStream in = banner.getInputStream();
+		ModelAndView mv = new ModelAndView();
+
+		mv.setViewName("uploadfile1");
+		return mv;
+	}
+	@RequestMapping(value = "/uploadfile2", method = RequestMethod.POST)
+	public ModelAndView uploadfile2(HttpServletResponse response) throws IOException {
+		ModelAndView mv = new ModelAndView();
+		List<Dokument> dokumentList = dokumentService.getAllDocuments();
+		List<Templejt> templejtList = templejtService.getAllTemplejts();
+		mv.addObject("dokumentList", dokumentList);	
+		mv.addObject("templejtList", templejtList);
+		mv.setViewName("documents");
+		return mv;
+	}
 	@RequestMapping(value = "/kreirajTempDugme", method = RequestMethod.GET)
 	public ModelAndView kreirajTempDugme(HttpServletResponse response) throws IOException {
 		ModelAndView mv = new ModelAndView();
@@ -218,8 +258,12 @@ public class UserController {
 		}
 		if(provera==0) {
 			templejtService.saveTemplejt(t);
-			idTemplejta = templejtService.getAllTemplejts().size();
+			
+			noviT = templejtService.getAllTemplejts().get(templejtService.getAllTemplejts().size()-1);
+			idTemplejta = noviT.getTemplejtID();
 		}
+		
+		
 		ModelAndView mv = new ModelAndView();
 		List<TemplejtAtributa> atributi = templejtAtributaService.getAllTemplejtAtributa();
 		List<TemplejtAtributa> odredjeniAtributi = new ArrayList<TemplejtAtributa>();
@@ -285,7 +329,7 @@ public class UserController {
 			t.setRequired(false);
 		}
 		templejtAtributaService.saveTemplejtAtributa(t);	
-		
+		System.out.println("sacuvan je prvi atribut templejta!!!!!");
 		ModelAndView mv = new ModelAndView();
 		List<TemplejtAtributa> atributi = templejtAtributaService.getAllTemplejtAtributa();
 		List<TemplejtAtributa> odredjeniAtributi = new ArrayList<TemplejtAtributa>();

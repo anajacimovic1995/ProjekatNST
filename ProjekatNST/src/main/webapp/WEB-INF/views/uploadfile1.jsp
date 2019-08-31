@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>Upload dokumenta</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -12,21 +13,7 @@
   box-sizing: border-box;
 }
 
-.submitclass {
-  background-color: #f29d52;
-  border: none;
-  color: black;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 13px;
-  margin: 4px 2px;
-  cursor: pointer;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
@@ -142,6 +129,7 @@ text-align: justify;
     width: 100%;
   }
 }
+
 
 
 .header {
@@ -353,6 +341,8 @@ text-align: justify;
 
 		.table {
 		  display: table;
+		 
+
 		}
 		
 		.row {
@@ -388,36 +378,33 @@ text-align: justify;
 	<link rel="stylesheet" href="css/footer-distributed-with-contact-form.css">
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 	<link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
-<title>Kreiranje novog dokumenta</title>
+    <title>Prikaz dokumenata</title>
+
 </head>
 <body>
-	<div class="header">
-	  <h1>Kreiranje novog dokumenta</h1>
-	
-	</div>
-	
-	<div class="navbar">
-	  <a href="/ProjekatNST/documents" class="active">Home</a>
-	  <a href="/ProjekatNST/kreirajDokDugme" class="active">Kreiraj dokument</a>
-	  <a href="/ProjekatNST/kreirajTempDugme" class="active">Kreiraj templejt</a>	  
-      <a href="/ProjekatNST/uploadfile" class="active">Upload dokumenta</a>
-	  <a href="/ProjekatNST/" class="right">Izloguj se sa naloga</a>
-	</div>
-		<br>
-	 <form action="dodajDokument" method="post">
-	  Unesi ime novog dokumenta: <input type="text" name="dokument"><br>
-	  <br>
-	  Unesi ime templejt dokumenta: 
-	  <select id = "temp" name = "templejt">
-	  <c:forEach var = "temp" items = "${templejtList}">
-	  		   <option value = "${temp.getNazivTemplejta()}">${temp.getNazivTemplejta()}</option>
+<div class="header">
+  <h1>Upload dokumenta</h1>
 
-	  </c:forEach>
-	  	 </select><br>
-	  	 <br>
-	  <input class="submitclass" type="submit" value="Sacuvaj dokument i dodaj vrednosti">
+</div>
+
+<div class="navbar">
+  <a href="/ProjekatNST/documents" class="active">Home</a>
+  <a href="/ProjekatNST/kreirajDokDugme" class="active">Kreiraj dokument</a>
+  <a href="/ProjekatNST/kreirajTempDugme" class="active">Kreiraj templejt</a>
+  <a href="/ProjekatNST/uploadfile" class="active">Upload dokumenta</a>
+  <a href="/ProjekatNST/" class="right">Izloguj se sa naloga</a>
+</div>
+	
+	 <br>
+	 <br>
+	 <form action="uploadfile2" method="post">
+	  Dokument je ispravan, klikom na dugme izvrsice se dodavanje u sistem.
+	  <br>
+	  <br>
+	  <input class="submitclass" type="submit" value="Upload">
 	 </form>
-	 	<footer class="footer-distributed">
+
+	<footer class="footer-distributed">
 
 		<div class="footer-left">
 
@@ -445,5 +432,7 @@ text-align: justify;
 				</form>
 			</div>
 </footer>
+
+	
 </body>
 </html>
