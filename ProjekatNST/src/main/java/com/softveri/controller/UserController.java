@@ -115,8 +115,18 @@ public class UserController implements ResourceLoaderAware{
 	
 	@RequestMapping(value = "/uploadfile1", method = RequestMethod.POST)
 	public ModelAndView uploadfile1(@RequestParam("dokument") String dok, HttpServletResponse response) throws IOException {
-		Resource banner = resourceLoader.getResource(dok);
+		Resource banner = resourceLoader.getResource("file:"+ dok);
 		InputStream in = banner.getInputStream();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+        String line = "";
+        while (true) {
+            line = reader.readLine();
+            if (line == null)
+                break;
+            System.out.println(line);
+        }
+        reader.close();
+        System.out.println(line);
 		ModelAndView mv = new ModelAndView();
 
 		mv.setViewName("uploadfile1");
