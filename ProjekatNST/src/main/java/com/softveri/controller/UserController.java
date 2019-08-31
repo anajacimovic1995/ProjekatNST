@@ -134,18 +134,37 @@ public class UserController implements ResourceLoaderAware{
 		InputStream in = banner.getInputStream();
         BufferedReader reader = new BufferedReader(new InputStreamReader(in));
         String line = "";
-        while (true) {
-            line = reader.readLine();
-            if (line == null)
+        String pline = "";
+        while (true) {        	
+            pline = reader.readLine();        	           
+            if (pline == null)
                 break;
-            System.out.println(line);
+            line += pline; 
         }
-        reader.close();
-        System.out.println(line);
-		ModelAndView mv = new ModelAndView();
 
-		mv.setViewName("uploadfile1");
-		return mv;
+	    reader.close();
+        System.out.println(line);
+
+        String[] lines = line.split(":");
+        
+        int brojac = 0;
+        for (int j = 0; j < lines.length; j++) {
+        	if(j==lines.length)
+        		break;
+			if(lines[j].contains((CharSequence) atributit.get(j).getNazivAtributa()))
+				brojac++;
+			
+		}
+        System.out.println("brojac je " + brojac);
+        System.out.println("velicina je " + atributit);
+        ModelAndView mv = new ModelAndView();
+	        if(brojac==atributit.size()) {	
+			mv.setViewName("uploadfile1");			
+	        }else {
+	        mv.setViewName("uploadfile");		
+	        }
+
+        return mv;
 	}
 	@RequestMapping(value = "/uploadfile2", method = RequestMethod.POST)
 	public ModelAndView uploadfile2(HttpServletResponse response) throws IOException {
