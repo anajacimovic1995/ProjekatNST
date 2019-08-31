@@ -397,6 +397,14 @@ text-align: justify;
 	 <br>
 	 <br>
 	 <form action="uploadfile1" method="post">
+	 Izaberi templejt dokumenta koji se dodaje: 
+	  <select id = "temp" name = "templejt">
+	  <c:forEach var = "temp" items = "${templejtList}">
+	  		   <option value = "${temp.getNazivTemplejta()}">${temp.getNazivTemplejta()}</option>
+
+	  </c:forEach>
+	  </select>
+	  <br>
 	  Unesi adresu dokumenta koji se uploaduje: <input type="text" name="dokument"><br>
 	  <br>
 	  <input class="submitclass" type="submit" value="Provera ispravnosti dokumenta">

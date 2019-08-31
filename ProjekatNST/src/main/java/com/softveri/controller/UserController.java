@@ -108,13 +108,28 @@ public class UserController implements ResourceLoaderAware{
 	@RequestMapping(value = "/uploadfile", method = RequestMethod.GET)
 	public ModelAndView uploadfile(HttpServletResponse response) throws IOException {
 		ModelAndView mv = new ModelAndView();
+		List<Templejt> templejtList = templejtService.getAllTemplejts();
+		mv.addObject("templejtList", templejtList);	
 		mv.setViewName("uploadfile");
 		return mv;
 	}
 
 	
 	@RequestMapping(value = "/uploadfile1", method = RequestMethod.POST)
-	public ModelAndView uploadfile1(@RequestParam("dokument") String dok, HttpServletResponse response) throws IOException {
+	public ModelAndView uploadfile1(@RequestParam("dokument") String dok, @RequestParam("templejt") String tepmlejt,HttpServletResponse response) throws IOException {
+		Templejt provera = new Templejt();
+		List<Templejt> templejtList = templejtService.getAllTemplejts();
+		for (Templejt templejtclan : templejtList) {
+			if(templejtclan.getNazivTemplejta().equals(tepmlejt))
+				provera = templejtclan;
+		}
+		List<TemplejtAtributa> atributit = new ArrayList<TemplejtAtributa>();
+		List<TemplejtAtributa> atributi = templejtAtributaService.getAllTemplejtAtributa();
+		for (TemplejtAtributa templejtAtributa : atributi) {
+			if(templejtAtributa.getTemplejt().getTemplejtID()==provera.getTemplejtID())
+				atributit.add(templejtAtributa);
+		}
+		System.out.println(atributit.get(0).getNazivAtributa());
 		Resource banner = resourceLoader.getResource("file:"+ dok);
 		InputStream in = banner.getInputStream();
         BufferedReader reader = new BufferedReader(new InputStreamReader(in));
