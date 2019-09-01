@@ -405,6 +405,7 @@ text-align: justify;
 	  </c:forEach>
 	  </select>
 	  <br>
+	  <br>
 	  Unesi adresu dokumenta koji se uploaduje: <input type="text" name="dokument"><br>
 	  <br>
 	  <input class="submitclass" type="submit" value="Provera ispravnosti dokumenta">

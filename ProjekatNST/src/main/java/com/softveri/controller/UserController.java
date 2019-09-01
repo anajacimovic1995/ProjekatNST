@@ -25,11 +25,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.softveri.entity.Company;
 import com.softveri.entity.Dokument;
 import com.softveri.entity.Templejt;
 import com.softveri.entity.TemplejtAtributa;
 import com.softveri.entity.User;
 import com.softveri.entity.VrednostPoljaDokumenta;
+import com.softveri.service.CompanyService;
+import com.softveri.service.CompanyServiceImpl;
 import com.softveri.service.DokumentService;
 import com.softveri.service.TemplejtAtributaService;
 import com.softveri.service.TemplejtService;
@@ -47,6 +50,7 @@ public class UserController implements ResourceLoaderAware{
 	private TemplejtService templejtService;
 	private TemplejtAtributaService templejtAtributaService;
 	private VrednostPoljaDokumentaService vrednostService;
+	private CompanyService companyService;
    
 	private ResourceLoader resourceLoader;
     
@@ -58,7 +62,7 @@ public class UserController implements ResourceLoaderAware{
 	}
 
 	@Autowired
-	public UserController(UserService userService,DokumentService dokumentService,TemplejtService templejtService, TemplejtAtributaService templejtAtributaService,
+	public UserController(CompanyService companyService,UserService userService,DokumentService dokumentService,TemplejtService templejtService, TemplejtAtributaService templejtAtributaService,
 			VrednostPoljaDokumentaService vrednostService) {
 		
 		this.userService = userService;
@@ -66,6 +70,7 @@ public class UserController implements ResourceLoaderAware{
 		this.templejtService = templejtService;
 		this.templejtAtributaService = templejtAtributaService;
 		this.vrednostService = vrednostService;
+		this.companyService = companyService;
 		
 	}
 	
@@ -164,14 +169,16 @@ public class UserController implements ResourceLoaderAware{
         System.out.println("velicina je " + atributit.size());
         
         ModelAndView mv = new ModelAndView();
-        if(brojac2==3) {
+        if(brojac2==atributit.size()) {        	
         	mv.addObject("dokument", dok);
         	mv.addObject("templejt", tepmlejt);        	
-        	mv.setViewName("uploadfile1");			
+        	mv.setViewName("uploadfile1");	
+        	
         }else {
         	List<Templejt> templejtList2 = templejtService.getAllTemplejts();
     		mv.addObject("templejtList", templejtList2);	
         	mv.setViewName("uploadfile");
+        	
         }
 
         return mv;
@@ -198,7 +205,8 @@ public class UserController implements ResourceLoaderAware{
 		Dokument dokument = new Dokument();
 		dokument.setNazivDokumenta(naziv);
 		dokument.setTemplejt(provera);
-		dokument.setKompanija(korisnik.getKompanija());
+		Company company = companyService.getCompanyById(1);
+		dokument.setKompanija(company);
 		dokumentService.saveDokument(dokument);
 		
 		Resource banner = resourceLoader.getResource("file:"+ dok);
