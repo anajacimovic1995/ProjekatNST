@@ -398,7 +398,13 @@ text-align: justify;
 	 <br>
 	 <br>
 	 <form action="uploadfile2" method="post">
-	  Dokument je ispravan, klikom na dugme izvrsice se dodavanje u sistem.
+	  Dokument je ispravan, klikom na dugme izvrsice se dodavanje u sistem.	  
+	  <br>
+	  Adresa dokumenta koji se uploaduje: <input type="text" name="dokument" value = "${dokument}"><br>
+	  <br>
+	  Templejt dokumenta koji se uploaduje: <input type="text" name="templejt" value = "${templejt}"><br>
+	  <br>
+	  Unesi naziv dokumenta koji se uploaduje: <input type="text" name="naziv"><br>
 	  <br>
 	  <br>
 	  <input class="submitclass" type="submit" value="Upload">

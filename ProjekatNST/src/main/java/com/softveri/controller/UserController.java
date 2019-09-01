@@ -135,44 +135,118 @@ public class UserController implements ResourceLoaderAware{
         BufferedReader reader = new BufferedReader(new InputStreamReader(in));
         String line = "";
         String pline = "";
-        while (true) {        	
-            pline = reader.readLine();        	           
-            if (pline == null)
-                break;
-            line += pline; 
+        
+    	int brojac = 0;
+        int brojac2 = 0;
+        while (true) {          	
+
+        		pline = reader.readLine();	        		
+        		if (pline == null) {
+        			System.out.println("brojac je " + brojac2);
+        			break;
+        		}
+        		System.out.println(pline + "pline");
+        		System.out.println(atributit.get(brojac).getNazivAtributa() + "atribut");
+        		
+        		if(pline.contains(atributit.get(brojac).getNazivAtributa())) {        			
+        			brojac2 = brojac2+1;
+        			
+        		}       		
+        		brojac=brojac+1;
+        		line += pline;
+        	
+        	
         }
 
 	    reader.close();
-        System.out.println(line);
-
-        String[] lines = line.split(":");
+        System.out.println(line);        
         
-        int brojac = 0;
-        for (int j = 0; j < lines.length; j++) {
-        	if(j==lines.length)
-        		break;
-			if(lines[j].contains((CharSequence) atributit.get(j).getNazivAtributa()))
-				brojac++;
-			
-		}
-        System.out.println("brojac je " + brojac);
-        System.out.println("velicina je " + atributit);
+        System.out.println("velicina je " + atributit.size());
+        
         ModelAndView mv = new ModelAndView();
-	        if(brojac==atributit.size()) {	
-			mv.setViewName("uploadfile1");			
-	        }else {
-	        mv.setViewName("uploadfile");		
-	        }
+        if(brojac2==3) {
+        	mv.addObject("dokument", dok);
+        	mv.addObject("templejt", tepmlejt);        	
+        	mv.setViewName("uploadfile1");			
+        }else {
+        	List<Templejt> templejtList2 = templejtService.getAllTemplejts();
+    		mv.addObject("templejtList", templejtList2);	
+        	mv.setViewName("uploadfile");
+        }
 
         return mv;
 	}
+	
 	@RequestMapping(value = "/uploadfile2", method = RequestMethod.POST)
-	public ModelAndView uploadfile2(HttpServletResponse response) throws IOException {
+	public ModelAndView uploadfile2(@RequestParam("dokument") String dok, @RequestParam("templejt") String tepmlejt,@RequestParam("naziv") String naziv, 
+			HttpServletResponse response) throws IOException {
+		
+		Templejt provera = new Templejt();
+		List<Templejt> templejtList = templejtService.getAllTemplejts();
+		for (Templejt templejtclan : templejtList) {
+			if(templejtclan.getNazivTemplejta().equals(tepmlejt))
+				provera = templejtclan;
+		}
+		
+		List<TemplejtAtributa> atributit = new ArrayList<TemplejtAtributa>();
+		List<TemplejtAtributa> atributi = templejtAtributaService.getAllTemplejtAtributa();
+		for (TemplejtAtributa templejtAtributa : atributi) {
+			if(templejtAtributa.getTemplejt().getTemplejtID()==provera.getTemplejtID())
+				atributit.add(templejtAtributa);
+		}
+		
+		Dokument dokument = new Dokument();
+		dokument.setNazivDokumenta(naziv);
+		dokument.setTemplejt(provera);
+		dokument.setKompanija(korisnik.getKompanija());
+		dokumentService.saveDokument(dokument);
+		
+		Resource banner = resourceLoader.getResource("file:"+ dok);
+		InputStream in = banner.getInputStream();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+        
+        String pline = "";        
+    	int brojac = 0;
+        int brojac2 = 0;
+        
+        while (true) {          	
+
+        		pline = reader.readLine();	        		
+        		if (pline == null) {
+        			System.out.println("brojac je " + brojac2);
+        			break;
+        		}
+        		System.out.println(pline + "pline");
+        		System.out.println(atributit.get(brojac).getNazivAtributa() + "atribut");
+        		
+        		if(pline.contains(atributit.get(brojac).getNazivAtributa())) {        			
+        			brojac2 = brojac2+1;
+        			String[] vr = pline.split(": ");
+        			VrednostPoljaDokumenta vp = new VrednostPoljaDokumenta();
+        			vp.setDokument(dokument);
+        			vp.setTemplejtatributa(atributit.get(brojac));
+        			if(atributit.get(brojac).getTip().equalsIgnoreCase("String"))
+        				vp.setVrednostString(vr[1]);
+        			if(atributit.get(brojac).getTip().equalsIgnoreCase("Double"))
+        				vp.setVrednostDouble(Double.parseDouble(vr[1]));
+        			if(atributit.get(brojac).getTip().equalsIgnoreCase("Integer"))
+        				vp.setVrednostInteger(Integer.parseInt(vr[1]));
+        			if(atributit.get(brojac).getTip().equalsIgnoreCase("Boolean"))
+        				vp.setVrednostBoolean(Boolean.parseBoolean(vr[1]));
+        			vrednostService.saveVrednost(vp);  			
+        		} 
+        		
+        		brojac=brojac+1;
+        		      	
+        	
+        }
+
+	    reader.close();
 		ModelAndView mv = new ModelAndView();
 		List<Dokument> dokumentList = dokumentService.getAllDocuments();
-		List<Templejt> templejtList = templejtService.getAllTemplejts();
+		List<Templejt> templejtList2 = templejtService.getAllTemplejts();
 		mv.addObject("dokumentList", dokumentList);	
-		mv.addObject("templejtList", templejtList);
+		mv.addObject("templejtList", templejtList2);
 		mv.setViewName("documents");
 		return mv;
 	}
